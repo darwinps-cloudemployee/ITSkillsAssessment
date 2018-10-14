@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".RegisterActivity"
+    tools:showIn="@layout/activity_register">
+
+    <EditText
+        android:id="@+id/editText_optionD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Option D (Answer)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView_optionsLabel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText_optionC"
+        app:layout_constraintTop_toBottomOf="@+id/editText_optionC" />
+
+    <EditText
+        android:id="@+id/editText_optionB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Option B (Answer)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView_optionsLabel"
+        app:layout_constraintStart_toStartOf="@+id/editText_optionA"
+        app:layout_constraintTop_toBottomOf="@+id/editText_optionA" />
+
+    <EditText
+        android:id="@+id/editText_optionC"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Option C (Answer)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView_optionsLabel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText_optionB"
+        app:layout_constraintTop_toBottomOf="@+id/editText_optionB" />
+
+    <EditText
+        android:id="@+id/editText_itemQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="Item Question"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_optionsLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Options"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editText_itemQuestion"
+        app:layout_constraintStart_toStartOf="@+id/editText_itemQuestion"
+        app:layout_constraintTop_toBottomOf="@+id/editText_itemQuestion" />
+
+    <EditText
+        android:id="@+id/editText_optionA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Option A (Answer)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView_optionsLabel"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintStart_toStartOf="@+id/textView_optionsLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textView_optionsLabel" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="SAVE"
+        app:layout_constraintEnd_toEndOf="@+id/editText_optionD"
+        app:layout_constraintStart_toStartOf="@+id/editText_optionD"
+        app:layout_constraintTop_toBottomOf="@+id/editText_optionD" />
+</android.support.constraint.ConstraintLayout>

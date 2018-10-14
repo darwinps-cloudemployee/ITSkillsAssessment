@@ -1,0 +1,66 @@
+package com.assessment.it.itskillsassessment;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+
+public class DifficultySelectActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_difficulty_select);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Button easyButton = (Button) findViewById(R.id.button_easy);
+        Button intermediateButton = (Button) findViewById(R.id.button_intermediate);
+        Button advancedButton = (Button) findViewById(R.id.button_advanced);
+
+        easyButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                    String option = "Easy";
+                    Intent intent = new Intent(DifficultySelectActivity.this,ExamActivity.class);
+                    intent.putExtra("Option",option);
+                    startActivity(intent);
+
+
+            }
+        });
+        intermediateButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String option = "Intermediate";
+                Intent intent = new Intent(DifficultySelectActivity.this,ExamActivity.class);
+                intent.putExtra("Option",option);
+                startActivity(intent);
+
+
+            }
+        });
+        advancedButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String option = "Advanced";
+                Intent intent = new Intent(DifficultySelectActivity.this,ExamActivity.class);
+                intent.putExtra("Option",option);
+                startActivity(intent);
+
+
+            }
+        });
+
+    }
+
+}
