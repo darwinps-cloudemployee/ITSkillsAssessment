@@ -8,9 +8,11 @@ public final class ITSkillsAssessmentContract {
         public static final String TABLE_NAME = "user";
         //column (field) names
         public static final String _ID = BaseColumns._ID;
+        public static final String COLUMN_FULLNAME = "fullname";
+        public static final String COLUMN_SCHOOL = "school";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_PASSWORD = "password";
-
+        public static final String COLUMN_ISADMIN = "isadmin";
     }
 
     public static final class QuestionEntry implements BaseColumns {

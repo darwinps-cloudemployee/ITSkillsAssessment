@@ -13,8 +13,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String TABLE_USER_CREATE=
             "CREATE TABLE " + UserEntry.TABLE_NAME + " (" +
                     UserEntry._ID + " INTEGER PRIMARY KEY, " +
+                    UserEntry.COLUMN_FULLNAME + " TEXT, " +
+                    UserEntry.COLUMN_SCHOOL + " TEXT, " +
                     UserEntry.COLUMN_USERNAME + " TEXT, " +
-                    UserEntry.COLUMN_PASSWORD + " TEXT " +
+                    UserEntry.COLUMN_PASSWORD + " TEXT, " +
+                    UserEntry.COLUMN_ISADMIN + " INTEGER DEFAULT 0 " +
                     ")";
 
     private static final String TABLE_QUESTION_CREATE =

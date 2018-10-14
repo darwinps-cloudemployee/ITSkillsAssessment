@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        //InitializeData();
+        InitializeData();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -113,17 +113,23 @@ public class LoginActivity extends AppCompatActivity {
     private void InitializeData() {
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
-/*
-        String query = "INSERT INTO user ("
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD + ")"
-                + " VALUES (\"test\",\"test\"); ";
 
-        db.execSQL(query);*/
+        String query = "INSERT INTO user ("
+                //+ ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
+                //+ ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD +
+                + ITSkillsAssessmentContract.UserEntry.COLUMN_FULLNAME + ","
+                + ITSkillsAssessmentContract.UserEntry.COLUMN_SCHOOL + ","
+                + ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
+                + ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD + ","
+                + ITSkillsAssessmentContract.UserEntry.COLUMN_ISADMIN +
+                ")"
+                + " VALUES (\"test\",\"test\",\"admin\",\"admin\",1); ";
+
+        db.execSQL(query);
 
         ContentValues values = new ContentValues();
-        values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME,"test");
-        values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD,"test");
+        values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME,"admin");
+        values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD,"admin");
         long user_id = db.insert(ITSkillsAssessmentContract.UserEntry.TABLE_NAME,null,values);
 
 
