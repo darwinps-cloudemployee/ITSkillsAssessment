@@ -27,4 +27,13 @@ public final class ITSkillsAssessmentContract {
         public static final String COLUMN_OPTIOND = "optionD";
         public static final String COLUMN_ANSWER = "answer";
     }
+
+    public static final class ResultEntry implements BaseColumns {
+        public static final String TABLE_NAME ="results";
+
+        public static final String _ID = BaseColumns._ID;
+        public static final String COLUMN_FULLNAME = "fullname";
+        public static final String COLUMN_RESULT = "result";
+
+    }
 }

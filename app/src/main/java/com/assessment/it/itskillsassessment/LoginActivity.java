@@ -19,6 +19,7 @@ import android.widget.EditText;
 
 import com.assessment.it.itskillsassessment.data.DatabaseHelper;
 import com.assessment.it.itskillsassessment.data.ITSkillsAssessmentContract;
+import com.assessment.it.itskillsassessment.entity.User;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,14 +59,18 @@ public class LoginActivity extends AppCompatActivity {
 
                 DatabaseHelper helper = new DatabaseHelper(v.getContext());
                 SQLiteDatabase db = helper.getReadableDatabase();
-                String[] projection = {ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME,
-                        ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD};
+                String[] projection = {ITSkillsAssessmentContract.UserEntry.COLUMN_FULLNAME,
+                        ITSkillsAssessmentContract.UserEntry.COLUMN_SCHOOL,
+                        ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME,
+                        ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD,
+                        ITSkillsAssessmentContract.UserEntry.COLUMN_ISADMIN};
 
                 String selection = ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + " = ? " + " AND " +
                         ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD + " = ? ";
                 String[] selectionArgs = {userName,passWord};
                 Cursor c = db.query(ITSkillsAssessmentContract.UserEntry.TABLE_NAME,projection,
                         selection,selectionArgs,null,null,null);
+
 
                 int i = c.getCount();
                 //Log.d("Record Count", String.valueOf(i));
@@ -81,7 +86,17 @@ public class LoginActivity extends AppCompatActivity {
                     //if((userName.equals("test") && passWord.equals("test") ))
                     if(i > 0)
                     {
+                        c.moveToFirst();
+
+                        String fullname = c.getString(c.getColumnIndex(ITSkillsAssessmentContract.UserEntry.COLUMN_FULLNAME));
+                        String school = c.getString(c.getColumnIndex(ITSkillsAssessmentContract.UserEntry.COLUMN_SCHOOL));
+                        String username = c.getString(c.getColumnIndex(ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME));
+                        String password = c.getString(c.getColumnIndex(ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD));
+                        int isadmin = c.getInt(c.getColumnIndex(ITSkillsAssessmentContract.UserEntry.COLUMN_ISADMIN));
+
                         Intent intent = new Intent(LoginActivity.this, SelectActivity.class);
+                        intent.putExtra("username",username);
+                        intent.putExtra("isadmin",isadmin);
                         startActivity(intent);
                        /* message = "User is registered";
                         Snackbar.make(v, message, Snackbar.LENGTH_LONG)
@@ -114,25 +129,28 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseHelper helper = new DatabaseHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        String query = "INSERT INTO user ("
-                //+ ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
-                //+ ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD +
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_FULLNAME + ","
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_SCHOOL + ","
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD + ","
-                + ITSkillsAssessmentContract.UserEntry.COLUMN_ISADMIN +
-                ")"
-                + " VALUES (\"test\",\"test\",\"admin\",\"admin\",1); ";
+        Cursor c = db.rawQuery("SELECT  * FROM user WHERE username = 'admin'", null);
 
-        db.execSQL(query);
+        if(c.getCount() == 0)
+        {
+            String query = "INSERT INTO user ("
+                    //+ ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
+                    //+ ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD +
+                    + ITSkillsAssessmentContract.UserEntry.COLUMN_FULLNAME + ","
+                    + ITSkillsAssessmentContract.UserEntry.COLUMN_SCHOOL + ","
+                    + ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME + ","
+                    + ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD + ","
+                    + ITSkillsAssessmentContract.UserEntry.COLUMN_ISADMIN +
+                    ")"
+                    + " VALUES (\"test\",\"test\",\"admin\",\"admin\",1); ";
 
-        ContentValues values = new ContentValues();
-        values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME,"admin");
-        values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD,"admin");
-        long user_id = db.insert(ITSkillsAssessmentContract.UserEntry.TABLE_NAME,null,values);
+            db.execSQL(query);
 
-
+            ContentValues values = new ContentValues();
+            values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_USERNAME,"admin");
+            values.put(ITSkillsAssessmentContract.UserEntry.COLUMN_PASSWORD,"admin");
+            long user_id = db.insert(ITSkillsAssessmentContract.UserEntry.TABLE_NAME,null,values);
+        }
     }
 
     @Override

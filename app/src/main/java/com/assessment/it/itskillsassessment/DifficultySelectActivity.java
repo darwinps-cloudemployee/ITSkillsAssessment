@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class DifficultySelectActivity extends AppCompatActivity {
 
+    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,9 @@ public class DifficultySelectActivity extends AppCompatActivity {
         Button intermediateButton = (Button) findViewById(R.id.button_intermediate);
         Button advancedButton = (Button) findViewById(R.id.button_advanced);
 
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+
         easyButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,6 +34,7 @@ public class DifficultySelectActivity extends AppCompatActivity {
                     String option = "Easy";
                     Intent intent = new Intent(DifficultySelectActivity.this,ExamActivity.class);
                     intent.putExtra("Option",option);
+                    intent.putExtra("username", username);
                     startActivity(intent);
 
 
@@ -42,6 +48,7 @@ public class DifficultySelectActivity extends AppCompatActivity {
                 String option = "Intermediate";
                 Intent intent = new Intent(DifficultySelectActivity.this,ExamActivity.class);
                 intent.putExtra("Option",option);
+                intent.putExtra("username", username);
                 startActivity(intent);
 
 
@@ -55,6 +62,7 @@ public class DifficultySelectActivity extends AppCompatActivity {
                 String option = "Advanced";
                 Intent intent = new Intent(DifficultySelectActivity.this,ExamActivity.class);
                 intent.putExtra("Option",option);
+                intent.putExtra("username", username);
                 startActivity(intent);
 
 

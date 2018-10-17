@@ -26,6 +26,7 @@ public class ExamActivity extends AppCompatActivity {
     int index = 0;
     int correctAnswers = 0;
     Question currentq = null;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class ExamActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
         String option = intent.getStringExtra("Option");
-
+        username = intent.getStringExtra("username");
 
          Button submitButton = (Button) findViewById(R.id.button_submit);
          final TextView questionText = (TextView) findViewById(R.id.textView_questions);
@@ -112,6 +113,7 @@ public class ExamActivity extends AppCompatActivity {
                          Float result = (float) correctAnswers / questions.size();
                          Intent intent = new Intent(ExamActivity.this,ResultActivity.class);
                          intent.putExtra("result",result);
+                         intent.putExtra("username", username);
                          startActivity(intent);
 
                      }

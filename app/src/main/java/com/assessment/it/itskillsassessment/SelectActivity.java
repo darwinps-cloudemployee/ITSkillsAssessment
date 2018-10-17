@@ -11,6 +11,9 @@ import android.widget.Button;
 
 public class SelectActivity extends AppCompatActivity {
 
+    int isadmin;
+    String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +24,46 @@ public class SelectActivity extends AppCompatActivity {
         Button takeExamButton = (Button) findViewById(R.id.button_take_exam);
         Button addQuestions = (Button) findViewById(R.id.button_add_questions);
 
-        takeExamButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SelectActivity.this, DifficultySelectActivity.class);
-                startActivity(intent);
+        final Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        isadmin  = intent.getIntExtra("isadmin",0);
+
+        if(isadmin == 0)
+        {
+            takeExamButton.setText("TAKE EXAM");
+
+            if(takeExamButton.getText() == "TAKE EXAM")
+            {
+                takeExamButton.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(SelectActivity.this, DifficultySelectActivity.class);
+                        intent.putExtra("username",username);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
+
+            addQuestions.setVisibility(View.INVISIBLE);
+        }
+
+        if(isadmin > 0)
+        {
+            takeExamButton.setText("CHECK RESULTS");
+                takeExamButton.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(SelectActivity.this, AllResultsActivity.class);
+                        intent.putExtra("username",username);
+                        startActivity(intent);
+                    }
+                });
+
+            //takeExamButton.setVisibility(View.INVISIBLE);
+        }
+
+
+
 
         addQuestions.setOnClickListener(new Button.OnClickListener() {
             @Override

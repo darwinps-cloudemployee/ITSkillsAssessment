@@ -7,4 +7,5 @@
     <string name="title_activity_select">SelectActivity</string>
     <string name="title_activity_difficulty_select">DifficultySelectActivity</string>
     <string name="title_activity_register_user">RegisterUserActivity</string>
+    <string name="title_activity_all_results">AllResultsActivity</string>
 </resources>
